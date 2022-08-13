@@ -2,7 +2,7 @@
 ### Instructions
 **Clone the project and change branch**
 
-`git clone https://github.com/1507amadeo/Entrega_Final_Arcenilla_Miotto.git`
+`git clone https://github.com/1507amadeo/amadeo_miotto_blog.git
 
 cd Entrega_Final_Arcenilla_Miotto
 `cd Entrega_Final_Arcenilla_Miotto`
