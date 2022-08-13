@@ -1,0 +1,38 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h1>Publication's details</h1>
+<hr></hr>
+<h1><strong>{{post.title}}  </strong> </h1>
+<h2><strong>{{post.subtitle}}  </strong> </h2>
+{{poasst.texto|safe}}  
+{% for image in post.postimagen_set.all %}
+    <img  src="{{image.image.url}}" alt="">
+{% endfor %}
+
+<p><h4>Published by  <a href="{% url 'user:autor-detail' post.autor.pk %}">{{ post.autor }}</a></p></h4>
+<p><h4>Date of Publication: {{post.fecha_publicacion}}</h4></p>
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Comments</h4>        
+    {% for comment in post.comentario_set.all %}
+    <hr>            
+    <p><strong>Message:</strong> {{comment.descripcion}}</p>
+    <p class="post-meta">
+        Commented by 
+        <a href="{% url 'user:autor-detail' comment.autor.pk %}">{{ comment.autor }}</a>
+        {{comment.fecha_publicacion}}
+    </p>
+    <hr></hr>
+    {% endfor %}
+</div>
+<a href="{% url 'post:post-list' %}">
+    <i class="fa fa-reply" style="color: rgba(0, 0, 190, 0.623);"> </i>
+    </a>
+    
+    
+   <a href="{% url 'comment:ComentarioFormulario' post.id %}">
+        <i class="fa fa-commenting" style="color: rgb(0, 0, 190, 0.623);"> </i>
+    </a>
+
+{% endblock %}

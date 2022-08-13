@@ -1,0 +1,23 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h2>Register</h2>
+<h3>Please fill out the form, password must be strong and valid </h3>
+<li>Your password can’t be too similar to your other personal information.</li>
+<li>Your password must contain at least 8 characters.</li>
+<li>Your password can’t be a commonly used password.</li>
+<li>Your password can’t be entirely numeric.  </li>  
+<hr></hr>
+{% if messages %}
+    {% for message in messages %}
+        <li style="color: blue"> {{ message }} </li>
+    {% endfor %}
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register User</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+<h1>Publications</h1>
+{% if user.is_authenticated %}  
+    {% if user.perfil == "E" or user.perfil == "A" or user.is_superuser %}  
+        <a class="btn btn-primary" href="{% url 'post:post-add' %}">Create a new Publication</a>
+    {% endif %}
+{% endif %}
+
+<h2>Publication's list</h2>
+
+<hr></hr>
+{% if post_list %}
+<ul>
+    {% for post in post_list %}
+    <li>
+
+        <h1><strong>{{post.title}}  </strong> </h1>
+        <h2><strong>{{post.subtitle}}  </strong> </h2>
+        <hr></hr>
+        <p><strong>Author:</strong> <a href="{% url 'user:autor-detail' post.autor.pk %}">{{ post.autor }}</a> {{post.fecha_publicacion}}</p> 
+        
+        (
+        <a href="{% url 'post:post-detail' post.id %}">
+            <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
+        </a>
+        {% if user.is_authenticated %}
+            |
+            <a href="{% url 'comment:ComentarioFormulario' post.id %}">
+                <i class="fa fa-commenting" style="color: rgb(0, 0, 190);"> </i>
+            </a>
+            {% if user.username == post.autor.username or user.is_superuser %}
+            |
+            <a href="{% url 'post:post-update' post.id %}">
+                <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"> </i>
+            </a>
+            |
+            <a href="{% url 'post:imagen-load' post.id %}">
+                <i class="fa fa-image" style="color: rgb(0, 0, 190);"> </i>
+            </a>
+            |
+            <a href="{% url 'post:post-delete' post.id %}">
+                <i class="fa fa-trash" style="color: rgb(0, 0, 100);"> </i>
+            </a>
+            {% endif %}
+        {% endif %}
+        )
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No Publications available.</p>
+{% endif %}
+
+{% endblock %}

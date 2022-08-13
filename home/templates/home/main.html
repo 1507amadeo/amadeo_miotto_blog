@@ -1,0 +1,39 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+    <h1> This blog was created by Amadeo Miotto</h1>
+
+    <hr></hr>
+
+    {% if user.is_authenticated %}
+    <div class="text-center">
+        <h2>Welcome {{ user.username }}!</h2>
+        <h3><a style="color: rgb(3, 36, 184)" href="{% url 'user:avatar-load' %}">Change Avatar</a></h3>
+        <img height="160px" src="{{url}}" alt="">
+    </div>
+    {% endif %}
+    <hr>
+    <hr></hr>
+    <h1><strong>Publications</strong></h1>
+    <hr></hr>
+    <hr>
+    {% if posts %}
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h1><strong>{{post.title}}  </strong> </h1>
+                <h2><strong>{{post.subtitle}}</strong></h2>
+                    (
+                        <a href="{% url 'post:post-detail' post.id %}">
+                            <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
+                        </a>
+                    )
+            </li>
+            <hr></hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Publications yet.</p>
+    {% endif %}
+    <hr></hr>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h1>Search a Publication</h1>
+<h2>Enter name, last name ,user name or date of  publication </h2>
+<hr></hr>
+
+<form action="/post/post_search" method="GET">
+    <div>
+        <input type="text" name="autor_search" id="autor_cod" placeholder="Search by Author">
+    </div>
+    <div>
+        <input type="date" name="fecha_search" id="fecha_publicacion_cod" placeholder="Search by Date">
+    </div>
+    <div>
+        <input type="submit" value="Search">
+    </div>
+</form>
+<hr></hr>
+
+{% if posts %}
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h1><strong>{{post.title}}  </strong> </h1>
+                <h2><strong>{{post.subtitle}}</strong></h2>
+                    (
+                        <a href="{% url 'post:post-detail' post.id %}">
+                            <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
+                        </a>
+                    )
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No publications available.</p>
+    {% endif %}
+
+{% endblock %}

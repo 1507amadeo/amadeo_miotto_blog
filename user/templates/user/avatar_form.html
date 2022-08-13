@@ -1,0 +1,15 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h2>Form to upload Avatar's image</h2>
+<hr></hr>
+<h3>User: {{user.username}}</h3>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Upload Image</button>
+</form>
+
+{% endblock %}

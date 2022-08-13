@@ -1,0 +1,14 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h2>Form to save/edit Publication</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}    
+    <input type="submit" class="btn btn-primary" value="Save Publication" />
+</form>
+
+{% endblock %}

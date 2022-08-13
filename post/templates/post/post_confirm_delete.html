@@ -1,0 +1,16 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h2>Delete Publication</h2>
+<hr></hr>
+
+<p>Confirm to delete publication: {{post.title }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn2 btn-warning" type="submit" value="Confirm to delete.">
+    <a class="btn2 btn-primary" href="{% url 'post:post-list' %}" >Cancell</a>
+</form>
+
+{% endblock %}

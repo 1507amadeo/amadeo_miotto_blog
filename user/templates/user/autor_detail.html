@@ -1,0 +1,12 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h2>Author's deatils</h2>
+<hr></hr>
+<p><h3>User: {{user.username}}</h3></p>
+<p><h4>Name: {{user.first_name}}</h4></p>
+<p><h4>Last name: {{user.last_name}}</h4></p>
+<p><h4>Email: {{user.email}}</h4></p>
+<p><a class="btn2 btn-primary" href="{% url 'post:post-list' %}">Go back</a></p>
+{% endblock %}

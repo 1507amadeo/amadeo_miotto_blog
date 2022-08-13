@@ -1,0 +1,27 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+    <h1> Comments! </h1>
+    <h2>List of comments</h2>
+    <hr></hr>
+    {% if comentario_form %}
+    <ul>
+        {% for comentario in comentario_form %}
+            <li>
+                <hr>  
+                <p><strong>Publication:</strong> {{comentario.post}}</p>
+                <p><strong>Message:</strong> {{comentario.descripcion}}</p>
+                <p class="post-meta">
+                    Commented by 
+                    <a href="{% url 'user:autor-detail' comentario.autor.pk %}">{{ comentario.autor }}</a>
+                    {{comentario.fecha_publicacion}}
+                </p>
+
+            </li>
+        {% endfor %}
+    </ul> 
+    {% else %}
+    <p>No comments yet!.</p>
+    {% endif %}
+    
+{% endblock %}

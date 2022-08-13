@@ -1,0 +1,27 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block app_coder_blog_content %}
+
+<h2>Login</h2>
+<hr></hr>
+
+{% if form.errors %}
+<p style="color: red">Wrong username and password, please try again.</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+    <div>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </div>
+    <div>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </div>
+    <a class="btn2 btn-dark" href="{% url 'user:user-register' %}" >Register</a>
+    <button type="submit">Log in</button>
+</form>
+
+{% endblock %}
